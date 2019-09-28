@@ -1,6 +1,6 @@
 <?php
 
-include '../utilities/Database.php';
+require_once '../utilities/Database.php';
 
 class Stocks
 {

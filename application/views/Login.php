@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if(isset($_SESSION['email']))
+if(isset($_SESSION['useremail']))
 {
     header("Location: Home.php");
     return;
@@ -17,7 +17,7 @@ if(isset($_SESSION['email']))
 
     <h1>Login</h1>
     <form action="../controllers/LoginController.php" method="post">
-        <input type="text" name="email" placeholder="Enter Email"/>
+        <input type="text" name="useremail" placeholder="Enter Email"/>
         <br/><br/>
         <input type="password" name="password" placeholder="Enter Password"/>
         <br/><br/>
