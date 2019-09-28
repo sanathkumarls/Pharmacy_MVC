@@ -9,7 +9,6 @@ if(!isset($_SESSION['useremail']))
     return;
 }
 
-
 include 'Header.php';
 
 ?>

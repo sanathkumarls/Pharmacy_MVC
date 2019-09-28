@@ -12,9 +12,7 @@ if(isset($_SESSION['useremail']))
     <title>Login</title>
 </head>
 <body>
-
 <div align="center">
-
     <h1>Login</h1>
     <form action="../controllers/LoginController.php" method="post">
         <input type="text" name="useremail" placeholder="Enter Email"/>
@@ -23,7 +21,6 @@ if(isset($_SESSION['useremail']))
         <br/><br/>
         <input type="submit" name="submit" value="Submit"/>
     </form>
-
 </div>
 </body>
 </html>
