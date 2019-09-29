@@ -10,5 +10,13 @@ require_once '../utilities/Database.php';
 
 class Supplier
 {
+    public function addSupplier($name,$address)
+    {
+        $db=new Database();
+        $con=$db->open_connection();
 
+        $query="insert into supplier values (NULL,'$name','$address')";
+        $result=$con->query($query);
+        return $result;
+    }
 }

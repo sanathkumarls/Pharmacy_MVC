@@ -9,5 +9,13 @@ require_once '../utilities/Database.php';
 
 class Medicine
 {
+    public function addMedicine($name,$category,$description)
+    {
+        $db=new Database();
+        $con=$db->open_connection();
 
+        $query="insert into medicine values (NULL,'$name','$category','$description')";
+        $result=$con->query($query);
+        return $result;
+    }
 }
