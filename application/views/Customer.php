@@ -19,4 +19,9 @@ include 'Header.php';
 
 ?>
 
+<title>PMS-Customer</title>
+</head>
+<body>
 
+</body>
+</html>

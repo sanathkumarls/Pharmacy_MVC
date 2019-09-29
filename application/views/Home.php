@@ -18,4 +18,10 @@ include 'Header.php';
 
 ?>
 
+<title>PMS-Home</title>
+</head>
+<body>
+
+</body>
+</html>
 

@@ -19,4 +19,11 @@ include 'Header.php';
 
 ?>
 
+<title>PMS-Add Medicine</title>
+</head>
+<body>
+
+</body>
+</html>
+
 

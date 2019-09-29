@@ -18,5 +18,10 @@ if(!isset($_SESSION['useremail']))
 include 'Header.php';
 
 ?>
+<title>PMS-Sales</title>
+</head>
+<body>
 
+</body>
+</html>
 

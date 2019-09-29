@@ -6,11 +6,10 @@
  * Time: 4:09 PM
  */
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="../../assets/bootstrap.min.css"
-</head>
-<body>
+    <link rel="stylesheet" href="../../assets/bootstrap.min.css">
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -24,7 +23,16 @@
             <li <?php if($page == "AddStocks") echo "class='active'"?>><a href="AddStocks.php">Add Stocks</a></li>
             <li <?php if($page == "Billings") echo "class='active'"?>><a href="Billings.php">Billings</a></li>
             &nbsp;
-            <li><a href="../controllers/LogoutController.php">Logout</a></li>
+            <li onclick="logout()"><a href="#"> Logout </a></li>
+
+
+            <script>
+                function logout() {
+                    if (confirm("Click OK To Logout")) {
+                        window.location.href='../controllers/LogoutController.php';
+                    }
+                }
+            </script>
         </ul>
     </div>
 </nav>

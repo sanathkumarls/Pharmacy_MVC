@@ -14,7 +14,7 @@ if(isset($_SESSION['useremail']))
 ?>
 <html>
 <head>
-    <title>Login</title>
+    <title>PMS-Login</title>
 </head>
 <body>
 <div align="center">

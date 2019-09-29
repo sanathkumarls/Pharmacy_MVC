@@ -19,4 +19,9 @@ include 'Header.php';
 
 ?>
 
+<title>PMS-Billings</title>
+</head>
+<body>
 
+</body>
+</html>

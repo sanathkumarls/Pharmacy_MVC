@@ -19,4 +19,9 @@ include 'Header.php';
 
 ?>
 
+<title>PMS-Add Supplier</title>
+</head>
+<body>
 
+</body>
+</html>

@@ -18,5 +18,10 @@ if(!isset($_SESSION['useremail']))
 include 'Header.php';
 
 ?>
+<title>PMS-Add Stocks</title>
+</head>
+<body>
 
+</body>
+</html>
 
