@@ -19,4 +19,32 @@ class Supplier
         $result=$con->query($query);
         return $result;
     }
+
+    public function getSupplier()
+    {
+        $db=new Database();
+        $con=$db->open_connection();
+
+        $query="select * from supplier";
+        $result=$con->query($query);
+        if($result->num_rows > 0)
+            return $result;
+
+        return false;
+    }
 }
+/*
+$supObj = new Supplier();
+$res=$supObj->getSupplier();
+if($res)
+{
+    while ($row=$res->fetch_assoc())
+    {
+        echo $row['sup_id']." ";
+        echo $row['sup_name']." ";
+        echo $row['sup_address']."<br/>";
+    }
+}
+else
+    echo "no rows exist";
+*/

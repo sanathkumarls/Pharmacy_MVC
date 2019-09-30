@@ -18,4 +18,18 @@ class Medicine
         $result=$con->query($query);
         return $result;
     }
+
+    public function getMedicine()
+    {
+        $db=new Database();
+        $con=$db->open_connection();
+
+        $query="select * from medicine";
+        $result=$con->query($query);
+
+        if($result->num_rows > 0)
+            return $result;
+
+        return false;
+    }
 }
