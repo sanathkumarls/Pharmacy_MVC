@@ -19,12 +19,15 @@ class Medicine
         return $result;
     }
 
-    public function getMedicine()
+    public function getMedicine($m_id = 0)
     {
         $db=new Database();
         $con=$db->open_connection();
+        if($m_id != 0)
+            $query="select * from medicine where m_id = '$m_id'";
+        else
+            $query="select * from medicine";
 
-        $query="select * from medicine";
         $result=$con->query($query);
 
         if($result->num_rows > 0)

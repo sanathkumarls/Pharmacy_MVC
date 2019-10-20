@@ -20,12 +20,16 @@ class Supplier
         return $result;
     }
 
-    public function getSupplier()
+    public function getSupplier($sup_id = 0)
     {
         $db=new Database();
         $con=$db->open_connection();
 
-        $query="select * from supplier";
+        if($sup_id != 0)
+            $query="select * from supplier where sup_id = '$sup_id'";
+        else
+            $query="select * from supplier";
+
         $result=$con->query($query);
         if($result->num_rows > 0)
             return $result;

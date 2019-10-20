@@ -19,19 +19,17 @@ class LoginController
     {
         $useremail=$_POST['useremail'];
         $password=$_POST['password'];
-        $this->checkLogin($useremail,$password);
+        if($useremail != null && $password != null)
+            $this->checkLogin($useremail,$password);
+        else
+            echo "<script>
+                        alert('Please Enter Useremail And Password');
+                        window.location.href='../views/Login.php';
+                </script>";
     }
 
     public function checkLogin($useremail,$password)
     {
-            if($useremail == null || $password == null)
-            {
-                echo "
-                <script>
-                        alert('Please Enter Useremail And Password');
-                        window.location.href='../views/Login.php';
-                </script>";
-            }
             $admin = new Admin();
             $user = $admin->canLogin($useremail,$password);
 
