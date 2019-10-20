@@ -1,11 +1,11 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: sanathls
- * Date: 29/09/19
- * Time: 4:09 PM
+ * Date: 21/10/19
+ * Time: 2:53 AM
  */
+
 session_start();
 
 if(!isset($_SESSION['useremail']))
@@ -16,11 +16,14 @@ if(!isset($_SESSION['useremail']))
 
 include 'Header.php';
 
+
 ?>
-<title>PMS-Sales</title>
+
+
+<title>PMS-Supplier</title>
 </head>
 <body>
 
+
 </body>
 </html>
-

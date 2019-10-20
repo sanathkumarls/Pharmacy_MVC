@@ -18,4 +18,26 @@ class Stocks
         $res=$con->query($query);
         return $res;
     }
+
+    public function getStocks()
+    {
+        $db = new Database();
+        $con= $db->open_connection();
+
+        $query="call stocks()";
+        $res=$con->query($query);
+        if($res->num_rows > 0)
+            return $res;
+        return false;
+    }
+
+    public function deleteStock($st_id)
+    {
+        $db = new Database();
+        $con= $db->open_connection();
+
+        $query="delete from stocks where st_id = '$st_id'";
+        $res=$con->query($query);
+        return $res;
+    }
 }

@@ -54,7 +54,7 @@ $suppliers = $objStocksController->fetchSuppliers();
     <label>Quantity : </label>
     <input type="number" name="quantity" required>
     <br><br>
-    <label>Cost / Strip : </label>
+    <label>Cost Per Strip : </label>
     <input type="number" name="cost" required>
     <br><br>
     <label>Date Supplied : </label>
