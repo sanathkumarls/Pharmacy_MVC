@@ -29,10 +29,14 @@ $suppliers = $objStocksController->fetchSuppliers();
 <form action="../controllers/AddStocksController.php" method="post">
     <label>Medicine : </label>
     <select name="m_id" required>
+        <option value="">--- SELECT MEDICINE ---</option>
         <?php
-        while($row = $medicines->fetch_assoc())
+        if($medicines->num_rows > 0)
         {
-            echo '<option value="'.$row['m_id'].'">'.$row['m_name'].'</option>';
+            while($row = $medicines->fetch_assoc())
+            {
+                echo '<option value="'.$row['m_id'].'">'.$row['m_name'].'</option>';
+            }
         }
         ?>
 
@@ -42,10 +46,14 @@ $suppliers = $objStocksController->fetchSuppliers();
     <br><br>
     <label>Supplier : </label>
     <select name="sup_id" required>
+        <option value="">--- SELECT SUPPLIER ---</option>
         <?php
-        while($row = $suppliers->fetch_assoc())
+        if($suppliers->num_rows > 0)
         {
-            echo '<option value="'.$row['sup_id'].'">'.$row['sup_name'].'</option>';
+            while($row = $suppliers->fetch_assoc())
+            {
+                echo '<option value="'.$row['sup_id'].'">'.$row['sup_name'].'</option>';
+            }
         }
         ?>
     </select>

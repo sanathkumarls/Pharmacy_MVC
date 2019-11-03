@@ -16,7 +16,12 @@ if(!isset($_SESSION['useremail']))
 
 include 'Header.php';
 
-
+require_once '../models/Supplier.php';
+$objSUpplier = new Supplier();
+if(isset($_GET['sup_id']))
+    $result=$objSUpplier->getSupplier($_GET['sup_id']);
+else
+    $result=$objSUpplier->getSupplier(-1);
 ?>
 
 
@@ -24,6 +29,38 @@ include 'Header.php';
 </head>
 <body>
 
+<table class="table table-borderless">
+    <thead>
+    <tr>
+        <th scope="col">Supplier Id</th>
+        <th scope="col">Suppplier Name</th>
+        <th scope="col">Address</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <?php
+
+            if($result != null)
+            {
+                while ($row = $result->fetch_assoc())
+                {
+                    echo '
+                            <th scope="row">'.$row['sup_id'].'</th>
+                            <td>'.$row['sup_name'].'</td>
+                            <td>'.$row['sup_address'].'</td>';
+                }
+            }
+            else
+            {
+                echo "<th></th><td>No Supplier Records Found</td>";
+            }
+            ?>
+    </tr>
+
+    </tbody>
+</table>
 
 </body>
 </html>
