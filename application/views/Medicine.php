@@ -16,12 +16,12 @@ if(!isset($_SESSION['useremail']))
 
 include 'Header.php';
 
-require_once '../models/Medicine.php';
+require_once __DIR__.'/../models/Medicine.php';
 $objMedicine = new Medicine();
 if(isset($_GET['m_id']))
     $result=$objMedicine->getMedicine($_GET['m_id']);
 else
-    $result=$objMedicine->getMedicine(-1);
+    $result=$objMedicine->getMedicine();
 ?>
 
 

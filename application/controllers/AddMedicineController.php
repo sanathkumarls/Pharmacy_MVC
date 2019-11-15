@@ -6,7 +6,7 @@
  * Time: 4:37 PM
  */
 
-require_once '../models/Medicine.php';
+require_once __DIR__.'/../models/Medicine.php';
 
 if(isset($_POST['submit']))
 {

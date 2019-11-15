@@ -15,7 +15,7 @@ if(!isset($_SESSION['useremail']))
 }
 
 include 'Header.php';
-require_once '../controllers/HomeController.php';
+require_once __DIR__.'/../controllers/HomeController.php';
 
 $objHomeController = new HomeController();
 $values=$objHomeController->getStocks();

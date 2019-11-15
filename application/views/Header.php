@@ -21,6 +21,9 @@
 
             <li <?php if($page == "Home") echo "class='active'"?>><a href="Home.php">Home</a></li>
             <li <?php if($page == "AddStocks") echo "class='active'"?>><a href="AddStocks.php">Add Stocks</a></li>
+            <li <?php if($page == "Medicine") echo "class='active'"?>><a href="Medicine.php">Medicines</a></li>
+            <li <?php if($page == "Supplier") echo "class='active'"?>><a href="Supplier.php">Suppliers</a></li>
+            <li <?php if($page == "Customer") echo "class='active'"?>><a href="Customer.php">Customers</a></li>
             <li <?php if($page == "Billings") echo "class='active'"?>><a href="Billings.php">Billings</a></li>
             &nbsp;
             <li onclick="logout()"><a href="#"> Logout </a></li>

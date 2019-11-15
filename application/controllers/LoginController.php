@@ -5,7 +5,7 @@
  * Date: 29/09/19
  * Time: 4:09 PM
  */
-require_once '../models/Admin.php';
+require_once __DIR__.'/../models/Admin.php';
 
 if(isset($_POST['submit']))
 {

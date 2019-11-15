@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 28, 2019 at 09:48 PM
+-- Generation Time: Nov 14, 2019 at 01:33 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -21,6 +21,15 @@ SET time_zone = "+00:00";
 --
 -- Database: `pharmacy`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `stocks` ()  READS SQL DATA
+SELECT * FROM stocks$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -51,9 +60,16 @@ CREATE TABLE `customer` (
   `c_id` int(11) NOT NULL,
   `c_name` varchar(20) NOT NULL,
   `c_email` varchar(50) NOT NULL,
-  `c_phone` tinyint(4) NOT NULL,
+  `c_phone` varchar(10) NOT NULL,
   `c_address` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`c_id`, `c_name`, `c_email`, `c_phone`, `c_address`) VALUES
+(1, 'Sanath L S', 'sanathlslokanathapura@gmail.com', '9481694830', 'Lokeshwara\r\nLokanathapura');
 
 -- --------------------------------------------------------
 
@@ -68,6 +84,13 @@ CREATE TABLE `medicine` (
   `m_description` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `medicine`
+--
+
+INSERT INTO `medicine` (`m_id`, `m_name`, `m_category`, `m_description`) VALUES
+(1, 'Paracetemol', 'Tablet', 'Fever Tablet');
+
 -- --------------------------------------------------------
 
 --
@@ -80,8 +103,23 @@ CREATE TABLE `sales` (
   `c_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `cost` float NOT NULL,
-  `date` date NOT NULL
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`s_id`, `st_id`, `c_id`, `quantity`, `cost`, `date`) VALUES
+(1, 1, 1, 10, 1, '2019-11-14 12:13:22');
+
+--
+-- Triggers `sales`
+--
+DELIMITER $$
+CREATE TRIGGER `update quantity left` AFTER INSERT ON `sales` FOR EACH ROW update stocks s set s.quantity_left=s.quantity_left-new.quantity where s.st_id=new.st_id
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -99,6 +137,13 @@ CREATE TABLE `stocks` (
   `date_supplied` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `stocks`
+--
+
+INSERT INTO `stocks` (`st_id`, `m_id`, `sup_id`, `quantity`, `quantity_left`, `cost`, `date_supplied`) VALUES
+(1, 1, 1, 200, 190, 13, '2019-11-04');
+
 -- --------------------------------------------------------
 
 --
@@ -110,6 +155,13 @@ CREATE TABLE `supplier` (
   `sup_name` varchar(50) NOT NULL,
   `sup_address` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`sup_id`, `sup_name`, `sup_address`) VALUES
+(1, 'Dolophor', 'Bangalore');
 
 --
 -- Indexes for dumped tables
@@ -138,15 +190,15 @@ ALTER TABLE `medicine`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`s_id`),
-  ADD KEY `st_id` (`st_id`),
-  ADD KEY `c_id` (`c_id`);
+  ADD KEY `sales_ibfk_1` (`st_id`),
+  ADD KEY `sales_ibfk_2` (`c_id`);
 
 --
 -- Indexes for table `stocks`
 --
 ALTER TABLE `stocks`
   ADD PRIMARY KEY (`st_id`),
-  ADD KEY `m_id` (`m_id`),
+  ADD KEY `stocks_ibfk_1` (`m_id`),
   ADD KEY `stocks_ibfk_2` (`sup_id`);
 
 --
@@ -169,31 +221,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `medicine`
 --
 ALTER TABLE `medicine`
-  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `sup_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -203,15 +255,15 @@ ALTER TABLE `supplier`
 -- Constraints for table `sales`
 --
 ALTER TABLE `sales`
-  ADD CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`st_id`) REFERENCES `stocks` (`st_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `sales_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `customer` (`c_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`st_id`) REFERENCES `stocks` (`st_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sales_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `customer` (`c_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `stocks`
 --
 ALTER TABLE `stocks`
-  ADD CONSTRAINT `stocks_ibfk_1` FOREIGN KEY (`m_id`) REFERENCES `medicine` (`m_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `stocks_ibfk_2` FOREIGN KEY (`sup_id`) REFERENCES `supplier` (`sup_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `stocks_ibfk_1` FOREIGN KEY (`m_id`) REFERENCES `medicine` (`m_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `stocks_ibfk_2` FOREIGN KEY (`sup_id`) REFERENCES `supplier` (`sup_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

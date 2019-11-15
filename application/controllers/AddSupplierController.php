@@ -5,7 +5,7 @@
  * Date: 29/09/19
  * Time: 4:38 PM
  */
-require_once '../models/Supplier.php';
+require_once __DIR__.'/../models/Supplier.php';
 
 if(isset($_POST['submit']))
 {

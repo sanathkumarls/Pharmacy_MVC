@@ -6,7 +6,7 @@
  * Time: 2:39 AM
  */
 
-require_once '../models/Stocks.php';
+require_once __DIR__.'/../models/Stocks.php';
 
 class DeleteStockController
 {

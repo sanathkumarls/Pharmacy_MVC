@@ -5,7 +5,7 @@
  * Date: 29/09/19
  * Time: 4:09 PM
  */
-require_once '../utilities/Database.php';
+require_once __DIR__.'/../utilities/Database.php';
 
 class Medicine
 {
@@ -34,5 +34,22 @@ class Medicine
             return $result;
 
         return false;
+    }
+
+    public function getMedicineName($m_id)
+    {
+        $db=new Database();
+        $con=$db->open_connection();
+
+        $query="select * from medicine where m_id = '$m_id'";
+
+        $result=$con->query($query);
+
+        if($result->num_rows > 0)
+        {
+            $row = $result->fetch_assoc();
+            return $row['m_name'];
+        }
+        return "";
     }
 }

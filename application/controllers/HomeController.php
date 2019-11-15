@@ -6,9 +6,9 @@
  * Time: 1:35 AM
  */
 
-require_once '../models/Stocks.php';
-require_once '../models/Medicine.php';
-require_once '../models/Supplier.php';
+require_once __DIR__.'/../models/Stocks.php';
+require_once __DIR__.'/../models/Medicine.php';
+require_once __DIR__.'/../models/Supplier.php';
 
 class HomeController
 {

@@ -15,7 +15,7 @@ if(!isset($_SESSION['useremail']))
 }
 
 include 'Header.php';
-require_once '../controllers/AddStocksController.php';
+require_once __DIR__.'/../controllers/AddStocksController.php';
 $objStocksController = new AddStocksController();
 
 $medicines=$objStocksController->fetchMedicines();

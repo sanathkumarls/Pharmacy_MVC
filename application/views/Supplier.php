@@ -16,12 +16,12 @@ if(!isset($_SESSION['useremail']))
 
 include 'Header.php';
 
-require_once '../models/Supplier.php';
+require_once __DIR__.'/../models/Supplier.php';
 $objSUpplier = new Supplier();
 if(isset($_GET['sup_id']))
     $result=$objSUpplier->getSupplier($_GET['sup_id']);
 else
-    $result=$objSUpplier->getSupplier(-1);
+    $result=$objSUpplier->getSupplier();
 ?>
 
 
